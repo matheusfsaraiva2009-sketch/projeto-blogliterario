@@ -244,7 +244,7 @@
       coverImg: 'capas/cidadania.jpg',
       eyebrow: 'Leitura recomendada',
       body: `<p>Um clássico da historiografia brasileira sobre como — e o quanto — os direitos civis, políticos e sociais avançaram (ou não) no país desde a Independência. Carvalho mostra que no Brasil, ao contrário do caminho europeu, os direitos sociais chegaram antes dos civis e políticos — o que moldou nossa democracia até hoje.</p>`,
-      link: null
+      link: { href: 'https://www.estantevirtual.com.br/livros/jose-murilo-de-carvalho/cidadania-no-brasil-o-longo-caminho', label: 'Comprar na Estante Virtual' }
     },
     {
       id: 'democracias-morrem',
@@ -259,7 +259,7 @@
       coverImg: 'capas/democracias-morrem.jpg',
       eyebrow: 'Leitura recomendada',
       body: `<p>Os cientistas políticos Steven Levitsky e Daniel Ziblatt comparam casos ao redor do mundo para entender como democracias deixam de morrer por golpes repentinos e passam a corroer por dentro, aos poucos — pela erosão das instituições, do judiciário e da imprensa livre.</p>`,
-      link: null
+      link: { href: 'https://www.companhiadasletras.com.br/livro/detalhe/produto/9788537818008/como-as-democracias-morrem', label: 'Comprar na Companhia das Letras' }
     },
     {
       id: 'dinheiro',
@@ -274,7 +274,7 @@
       coverImg: 'capas/dinheiro.jpg',
       eyebrow: 'Leitura recomendada',
       body: `<p>Um raio-x de como o financiamento de campanhas molda o Congresso Nacional brasileiro e as leis que ele aprova — ou deixa de aprovar. Carazza traça as conexões entre o dinheiro privado e as decisões públicas, mostrando como o poder econômico interfere na democracia representativa.</p>`,
-      link: null
+      link: { href: 'https://www.companhiadasletras.com.br/livro/9788543106847/dinheiro-eleicoes-e-poder', label: 'Comprar na Companhia das Letras' }
     },
     {
       id: 'abol',
@@ -2176,7 +2176,6 @@
     filmZoomView.hidden = false;
     document.body.style.overflow = 'hidden';
     filmZoomView.scrollTop = 0;
-    filmZoomView.scrollTop = 0;
     if (filmZoomBack) setTimeout(() => filmZoomBack.focus(), 50);
     const openReviewsBtn = document.getElementById('open-film-reviews-btn');
     if (openReviewsBtn) {
@@ -2517,7 +2516,7 @@
       quote: '“Garantir o acesso livre e gratuito aos livros é democratizar o próprio direito de pensar e questionar.”'
     },
     {
-      role: 'Desenvolvimento Web & Curadoria Audiovisual',
+      id: 'guilherme',
       name: 'Guilherme',
       role: 'Curadoria Audiovisual & Mídias',
       badge: 'Front-end & Audiovisual',
@@ -2535,7 +2534,7 @@
       name: 'Cecília',
       role: 'Design, Vídeo & Divulgação',
       badge: 'Criação & Comunicação',
-      img: 'Foto dos integrantes/cecilia-foto.jpeg',
+      img: 'Foto dos integrantes/image.png',
       summary: 'Auxiliou na produção visual e comunicativa do projeto, contribuindo com design gráfico, produção de vídeos e divulgação do trabalho nas redes sociais e eventos do Ceará Científico.',
       contributions: [
         'Apoio na criação de peças visuais e materiais de divulgação do projeto para redes sociais e apresentações.',
@@ -2543,20 +2542,6 @@
         'Divulgação do projeto junto ao público estudantil, ampliando o alcance da pesquisa.'
       ],
       quote: '"A comunicação é o que transforma uma pesquisa em algo que toca as pessoas de verdade."'
-    },
-    {
-      id: 'nicolas',
-      name: 'Nicolas Martins',
-      role: 'Design, Vídeo & Divulgação',
-      badge: 'Criação & Comunicação',
-      img: 'Foto dos integrantes/nicolas-foto.jpeg',
-      summary: 'Auxiliou na produção visual e comunicativa do projeto, contribuindo com design gráfico, produção de vídeos e divulgação do trabalho nas redes sociais e eventos do Ceará Científico.',
-      contributions: [
-        'Apoio na criação de peças visuais e materiais de divulgação do projeto para redes sociais e apresentações.',
-        'Participação na produção e edição de vídeos que integram a seção de personalidades do site.',
-        'Divulgação do projeto junto ao público estudantil, ampliando o alcance da pesquisa.'
-      ],
-      quote: '"Divulgar ciência é um ato de generosidade: é querer que o conhecimento chegue onde ainda não chegou."'
     }
   ];
 
@@ -2652,12 +2637,12 @@
         toggleBtn.setAttribute('aria-label',
           theme === 'dark' ? 'Mudar para modo claro' : 'Mudar para modo escuro');
       }
-      try { localStorage.setItem('theme', theme); } catch (e) {}
+      try { localStorage.setItem('theme', theme); } catch (e) { }
     }
 
     // Detecta preferência inicial
     let savedTheme = 'light';
-    try { savedTheme = localStorage.getItem('theme') || 'light'; } catch (e) {}
+    try { savedTheme = localStorage.getItem('theme') || 'light'; } catch (e) { }
     if (savedTheme !== 'dark' && savedTheme !== 'light') savedTheme = 'light';
     applyTheme(savedTheme);
 
@@ -2680,11 +2665,11 @@
         const btn = document.getElementById('font-size-' + s);
         if (btn) btn.setAttribute('aria-pressed', s === size ? 'true' : 'false');
       });
-      try { localStorage.setItem('font-size', size); } catch (e) {}
+      try { localStorage.setItem('font-size', size); } catch (e) { }
     }
 
     let savedSize = 'normal';
-    try { savedSize = localStorage.getItem('font-size') || 'normal'; } catch (e) {}
+    try { savedSize = localStorage.getItem('font-size') || 'normal'; } catch (e) { }
     if (!sizes.includes(savedSize)) savedSize = 'normal';
     applyFontSize(savedSize);
 

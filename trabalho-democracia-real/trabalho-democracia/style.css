@@ -174,7 +174,7 @@ header.site-header {
   background: rgba(127, 217, 164, 0.18);
   color: #7fd9a4;
   border-color: transparent;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.18);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.18);
 }
 
 /* ---- TOGGLE SWITCH (bolinha deslizante) ---- */
@@ -211,7 +211,7 @@ header.site-header {
   border-radius: 50%;
   background: rgba(223, 236, 227, 0.75);
   transition: transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.28s ease;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.3);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
 }
 
 /* Modo escuro ativo: desliza a bolinha e muda cor */
@@ -226,7 +226,10 @@ header.site-header {
 }
 
 /* Ícones: ocultos (só usamos a bolinha) */
-.theme-icon, .theme-label { display: none !important; }
+.theme-icon,
+.theme-label {
+  display: none !important;
+}
 
 /* Wrapper label + toggle */
 .theme-toggle-wrap {
@@ -2422,7 +2425,7 @@ footer span {
 
 :root[data-theme="dark"] .brand h1 {
   color: #c8ecd6;
-  text-shadow: 0 1px 4px rgba(0,0,0,0.4);
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
 }
 
 :root[data-theme="dark"] .brand h1 em {
@@ -3869,8 +3872,13 @@ footer span {
   font-size: 1.18rem;
 }
 
-:root[data-font-size="large"] h2 { font-size: clamp(2rem, 4.2vw, 3rem); }
-:root[data-font-size="xlarge"] h2 { font-size: clamp(2.2rem, 4.5vw, 3.2rem); }
+:root[data-font-size="large"] h2 {
+  font-size: clamp(2rem, 4.2vw, 3rem);
+}
+
+:root[data-font-size="xlarge"] h2 {
+  font-size: clamp(2.2rem, 4.5vw, 3.2rem);
+}
 
 /* Alinha os controles de fonte no header-controls */
 .header-controls .font-size-controls {
