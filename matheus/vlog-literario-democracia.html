@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vlog Literário sobre a Democracia — Ceará Científico</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700;9..144,900&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&family=Inter:wght@400;500;600;700&family=Special+Elite&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#efe6d0;
+    --paper-2:#e6d9b6;
+    --paper-deep:#dbc79c;
+    --ink:#1b2a4a;
+    --ink-2:#2c3e5c;
+    --charcoal:#2a2620;
+    --stamp:#a63d2f;
+    --seal:#2f5233;
+    --gold:#b58b3f;
+    --line:rgba(27,42,74,0.16);
+    --shadow:0 10px 30px rgba(42,38,32,0.14);
+    --radius:6px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background-color:var(--paper);
+    color:var(--charcoal);
+    font-family:'Source Serif 4', serif;
+    line-height:1.6;
+    position:relative;
+    min-height:100vh;
+  }
+  body::before{
+    content:"";
+    position:fixed; inset:0;
+    pointer-events:none;
+    z-index:0;
+    opacity:0.05;
+    mix-blend-mode:multiply;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  }
+  h1,h2,h3,h4{
+    font-family:'Fraunces', serif;
+    color:var(--ink);
+    margin:0 0 .4em;
+    letter-spacing:-0.01em;
+  }
+  a{color:var(--stamp);}
+  a:hover{color:var(--ink);}
+  .eyebrow{
+    font-family:'Special Elite', monospace;
+    font-size:0.72rem;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--stamp);
+    display:inline-block;
+    margin-bottom:0.6em;
+  }
+  .wrap{
+    max-width:1080px;
+    margin:0 auto;
+    padding:0 clamp(1rem,4vw,2.5rem);
+    position:relative;
+    z-index:1;
+  }
+  button{font-family:inherit;}
+  :focus-visible{outline:3px solid var(--gold); outline-offset:2px;}
+
+  /* ---------- HEADER / NAV ---------- */
+  header.site-header{
+    background:linear-gradient(180deg, var(--ink) 0%, #16223c 100%);
+    color:var(--paper);
+    padding-top:clamp(1.4rem,3vw,2.2rem);
+    position:relative;
+    z-index:2;
+  }
+  .brand{
+    display:flex;
+    align-items:flex-end;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:1rem;
+    padding-bottom:1.4rem;
+    border-bottom:1px solid rgba(239,230,208,0.18);
+  }
+  .brand .eyebrow{color:#d9b98a;}
+  .brand h1{
+    color:var(--paper);
+    font-size:clamp(1.7rem, 3.6vw, 2.5rem);
+    font-weight:700;
+    line-height:1.1;
+    margin:0;
+  }
+  .brand h1 em{
+    font-style:italic;
+    font-weight:400;
+    color:#d9b98a;
+  }
+  .brand-meta{
+    font-family:'Special Elite', monospace;
+    font-size:0.75rem;
+    color:rgba(239,230,208,0.65);
+    text-align:right;
+    line-height:1.5;
+  }
+  nav.tabs{
+    display:flex;
+    gap:0.35rem;
+    overflow-x:auto;
+    padding-top:0.7rem;
+  }
+  .tab{
+    appearance:none;
+    border:1px solid rgba(239,230,208,0.25);
+    border-bottom:none;
+    background:rgba(239,230,208,0.06);
+    color:rgba(239,230,208,0.75);
+    padding:0.7rem 1.1rem 0.8rem;
+    border-radius:8px 8px 0 0;
+    cursor:pointer;
+    font-family:'Inter',sans-serif;
+    font-size:0.92rem;
+    font-weight:600;
+    white-space:nowrap;
+    display:flex;
+    align-items:baseline;
+    gap:0.5rem;
+    transition:background .2s ease, color .2s ease, transform .15s ease;
+  }
+  .tab .tab-num{
+    font-family:'Special Elite', monospace;
+    font-size:0.7rem;
+    opacity:0.7;
+  }
+  .tab:hover{background:rgba(239,230,208,0.12); color:var(--paper);}
+  .tab[aria-selected="true"]{
+    background:var(--paper);
+    color:var(--ink);
+    border-color:var(--paper);
+  }
+  .tab[aria-selected="true"] .tab-num{color:var(--stamp); opacity:1;}
+
+  /* ---------- MAIN / PANELS ---------- */
+  main{
+    background:var(--paper);
+    position:relative;
+    z-index:1;
+  }
+  .panel{padding:clamp(2rem,5vw,3.5rem) 0 clamp(3rem,6vw,4.5rem);}
+  .panel[hidden]{display:none;}
+  .panel-head{max-width:640px; margin-bottom:2.2rem;}
+  .panel-head p.lede{
+    font-size:1.08rem;
+    color:var(--ink-2);
+  }
+
+  section.block{margin-bottom:3rem;}
+  section.block > h3{
+    font-size:1.4rem;
+    border-bottom:2px solid var(--gold);
+    padding-bottom:0.4rem;
+    display:inline-block;
+  }
+
+  /* ---------- HERO (Início) ---------- */
+  .hero{
+    display:grid;
+    grid-template-columns:1.3fr 1fr;
+    gap:2.5rem;
+    align-items:center;
+    margin-bottom:3rem;
+  }
+  .hero h2{
+    font-size:clamp(1.9rem,4vw,2.8rem);
+    line-height:1.15;
+  }
+  .hero .lede{font-size:1.15rem; color:var(--ink-2); max-width:46ch;}
+  .hero-stamp{display:flex; justify-content:center;}
+  .hero-stamp .stamp-svg{width:min(260px,80vw); color:var(--stamp); opacity:0.92;}
+  @media (max-width:760px){
+    .hero{grid-template-columns:1fr; text-align:left;}
+    .hero-stamp{order:-1; margin-bottom:0.5rem;}
+    .hero-stamp .stamp-svg{width:150px;}
+  }
+
+  .mission-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+    gap:1.1rem;
+  }
+  .mission-card{
+    background:var(--paper-2);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:1.3rem 1.4rem;
+  }
+  .mission-card h4{
+    font-size:1.05rem;
+    color:var(--stamp);
+    margin-bottom:0.4rem;
+  }
+  .mission-card p{margin:0; font-size:0.98rem;}
+
+  .info-card{
+    background:var(--paper-2);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:1.5rem 1.7rem;
+  }
+
+  /* ---------- BIBLIOTECA ---------- */
+  .doc-fundador{
+    background:#f7f1e0;
+    border:1px solid var(--gold);
+    border-radius:var(--radius);
+    padding:1.8rem clamp(1.3rem,4vw,2.3rem);
+    position:relative;
+    box-shadow:var(--shadow);
+  }
+  .doc-fundador blockquote{
+    font-style:italic;
+    font-size:1.05rem;
+    color:var(--ink-2);
+    margin:1rem 0;
+    padding-left:1.1rem;
+    border-left:3px solid var(--stamp);
+  }
+  .doc-fundador .art{
+    font-size:0.98rem;
+    background:rgba(166,61,47,0.06);
+    padding:0.9rem 1.1rem;
+    border-radius:4px;
+    margin:1rem 0;
+  }
+  .doc-fundador .source-link{font-family:'Inter',sans-serif; font-weight:600; font-size:0.92rem;}
+
+  .classics-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:1.4rem;
+  }
+  .book-card{
+    background:#fff9ec;
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:1.5rem;
+    position:relative;
+    box-shadow:var(--shadow);
+  }
+  .book-card .badge-mini{position:absolute; top:0.9rem; right:0.9rem; width:56px; height:56px; color:var(--seal); opacity:0.85;}
+  .book-card h4{font-size:1.2rem; margin-bottom:0.1em;}
+  .book-card .book-meta{
+    font-family:'Special Elite', monospace;
+    font-size:0.74rem;
+    color:var(--ink-2);
+    display:block;
+    margin-bottom:0.8rem;
+  }
+  .book-card p{font-size:0.97rem;}
+  .book-card .read-link{
+    display:inline-block;
+    margin-top:0.6rem;
+    font-family:'Inter',sans-serif;
+    font-weight:600;
+    font-size:0.9rem;
+    text-decoration:none;
+    border-bottom:2px solid var(--stamp);
+  }
+
+  .recommend-list{display:flex; flex-direction:column; gap:1rem;}
+  .recommend-item{
+    display:flex;
+    gap:1rem;
+    align-items:flex-start;
+    background:var(--paper-2);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:1.1rem 1.3rem;
+  }
+  .recommend-item .rec-mark{
+    font-family:'Fraunces',serif;
+    font-weight:700;
+    font-size:1.3rem;
+    color:var(--gold);
+    min-width:1.6em;
+  }
+  .recommend-item h4{font-size:1.05rem; margin-bottom:0.15em;}
+  .recommend-item .author{
+    font-family:'Inter',sans-serif;
+    font-size:0.85rem;
+    color:var(--ink-2);
+    display:block;
+    margin-bottom:0.35rem;
+  }
+  .recommend-item p{margin:0; font-size:0.94rem;}
+
+  /* ---------- PERSONALIDADES ---------- */
+  .note-box{
+    font-family:'Inter',sans-serif;
+    font-size:0.88rem;
+    color:var(--ink-2);
+    background:rgba(47,82,51,0.08);
+    border-left:3px solid var(--seal);
+    padding:0.8rem 1.1rem;
+    border-radius:0 4px 4px 0;
+    margin-bottom:2rem;
+  }
+  .figure-card{
+    display:grid;
+    grid-template-columns:220px 1fr;
+    gap:1.8rem;
+    background:#fff9ec;
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    box-shadow:var(--shadow);
+    padding:1.8rem;
+    margin-bottom:2rem;
+  }
+  @media (max-width:640px){
+    .figure-card{grid-template-columns:1fr;}
+  }
+  .figure-photo{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:0.9rem;
+  }
+  .figure-portrait{
+    width:100%;
+    aspect-ratio:3/4;
+    background:linear-gradient(160deg, var(--paper-deep), var(--paper-2));
+    border:1px solid var(--line);
+    border-radius:4px;
+    position:relative;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+  }
+  .figure-portrait::after{
+    content:"";
+    position:absolute; inset:8px;
+    border:1px solid rgba(27,42,74,0.25);
+  }
+  .figure-initials{
+    font-family:'Fraunces', serif;
+    font-weight:700;
+    font-size:3rem;
+    color:var(--ink);
+    opacity:0.55;
+  }
+  .figure-portrait .mini-stamp{
+    position:absolute;
+    bottom:-10px; right:-10px;
+    width:74px; height:74px;
+    color:var(--stamp);
+    opacity:0.9;
+  }
+  .figure-years{
+    font-family:'Special Elite', monospace;
+    font-size:0.78rem;
+    color:var(--ink-2);
+  }
+  .figure-text h3{font-size:1.5rem; margin-bottom:0.1em;}
+  .figure-role{
+    font-family:'Inter',sans-serif;
+    font-size:0.85rem;
+    font-weight:600;
+    color:var(--stamp);
+    text-transform:uppercase;
+    letter-spacing:0.04em;
+    display:block;
+    margin-bottom:0.7rem;
+  }
+  .figure-text p{font-size:0.98rem;}
+  .figure-video{margin-top:1.1rem;}
+  .figure-video .video-label{
+    font-family:'Inter',sans-serif;
+    font-size:0.82rem;
+    font-weight:600;
+    color:var(--ink-2);
+    display:block;
+    margin-bottom:0.5rem;
+  }
+  .video-frame{
+    position:relative;
+    padding-top:56.25%;
+    background:#000;
+    border-radius:4px;
+    overflow:hidden;
+    border:1px solid var(--line);
+  }
+  .video-frame iframe{
+    position:absolute; inset:0; width:100%; height:100%; border:0;
+  }
+
+  /* ---------- EQUIPE ---------- */
+  .team-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:1.3rem;
+  }
+  .team-card{
+    background:var(--paper-2);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:1.5rem;
+    text-align:center;
+  }
+  .team-avatar{
+    width:78px; height:78px;
+    margin:0 auto 0.9rem;
+    border-radius:50%;
+    background:var(--ink);
+    color:var(--paper);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Fraunces',serif;
+    font-weight:700;
+    font-size:1.5rem;
+  }
+  .team-card h4{font-size:1.15rem; margin-bottom:0.15em;}
+  .team-role{
+    font-family:'Inter',sans-serif;
+    font-size:0.82rem;
+    font-weight:600;
+    color:var(--stamp);
+    text-transform:uppercase;
+    letter-spacing:0.03em;
+    display:block;
+    margin-bottom:0.6rem;
+  }
+  .team-card p{font-size:0.92rem; margin:0; color:var(--ink-2);}
+
+  footer{
+    background:var(--ink);
+    color:rgba(239,230,208,0.7);
+    font-family:'Inter',sans-serif;
+    font-size:0.85rem;
+    padding:1.8rem 0;
+    position:relative;
+    z-index:1;
+  }
+  footer a{color:#d9b98a;}
+  footer .wrap{display:flex; justify-content:space-between; flex-wrap:wrap; gap:0.8rem;}
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{transition:none !important;}
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <div class="brand">
+      <div>
+        <span class="eyebrow">Projeto — Ceará Científico</span>
+        <h1>Vlog Literário <em>sobre a Democracia</em></h1>
+      </div>
+      <div class="brand-meta">Feira Estadual de Ciências<br>Secretaria da Educação do Ceará</div>
+    </div>
+    <nav class="tabs" role="tablist" aria-label="Seções do site">
+      <button class="tab" role="tab" id="tabbtn-inicio" aria-controls="inicio" aria-selected="true" data-tab="inicio">
+        <span class="tab-num">Nº 01</span> Início
+      </button>
+      <button class="tab" role="tab" id="tabbtn-biblioteca" aria-controls="biblioteca" aria-selected="false" data-tab="biblioteca" tabindex="-1">
+        <span class="tab-num">Nº 02</span> Biblioteca
+      </button>
+      <button class="tab" role="tab" id="tabbtn-personalidades" aria-controls="personalidades" aria-selected="false" data-tab="personalidades" tabindex="-1">
+        <span class="tab-num">Nº 03</span> Personalidades
+      </button>
+      <button class="tab" role="tab" id="tabbtn-equipe" aria-controls="equipe" aria-selected="false" data-tab="equipe" tabindex="-1">
+        <span class="tab-num">Nº 04</span> Equipe
+      </button>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <!-- ================= INÍCIO ================= -->
+  <section class="panel" id="inicio" role="tabpanel" aria-labelledby="tabbtn-inicio">
+    <div class="wrap">
+
+      <div class="hero">
+        <div>
+          <span class="eyebrow">Arquivo Nº 001 — Apresentação</span>
+          <h2>Ler, lembrar e registrar: a democracia brasileira contada em páginas.</h2>
+          <p class="lede">Um site-arquivo que reúne livros, personalidades e memória para pensar como o Brasil aprendeu — e segue aprendendo — a se governar em liberdade.</p>
+        </div>
+        <div class="hero-stamp">
+          <div class="stamp-holder" data-stamp data-top="ARQUIVO DA" data-bottom="DEMOCRACIA BRASILEIRA" data-center="1988" data-color="var(--stamp)"></div>
+        </div>
+      </div>
+
+      <section class="block">
+        <h3>O que é este projeto</h3>
+        <p>O <strong>Vlog Literário sobre a Democracia</strong> nasceu como projeto de pesquisa para o <strong>Ceará Científico</strong>. A ideia é simples de contar e um pouco mais trabalhosa de fazer: usar a literatura, a história e o vídeo para entender como a democracia foi construída no Brasil — quem escreveu sobre ela, quem lutou por ela e o que ainda está em aberto.</p>
+        <p>Por isso este site tem o formato de um blog literário, dividido em quatro frentes: nesta página, apresentamos o projeto; na <em>Biblioteca</em>, reunimos livros e documentos sobre a democracia brasileira, alguns para ler aqui mesmo; em <em>Personalidades</em>, contamos, em texto e vídeo, a trajetória de quem ajudou a construí-la; e em <em>Equipe</em>, registramos quem fez essa pesquisa.</p>
+      </section>
+
+      <section class="block">
+        <h3>Sobre o Ceará Científico</h3>
+        <div class="info-card">
+          <p>O Ceará Científico é a principal ação de incentivo à pesquisa nas escolas públicas do Ceará, promovida desde 2007 pela Secretaria da Educação (Seduc). O evento estimula a integração entre disciplinas e a parceria entre escolas e instituições de ensino, culminando em uma etapa estadual que reúne, todo ano, centenas de estudantes e professores orientadores de todo o estado.</p>
+          <p style="margin-bottom:0">Os projetos são organizados em cinco áreas de pesquisa — da Robótica às Ciências Humanas. Este trabalho se encaixa na área de <strong>Ciências Humanas e Sociais Aplicadas</strong>, propondo um olhar literário e histórico sobre um tema que atravessa gerações de brasileiros: a democracia.</p>
+        </div>
+      </section>
+
+      <section class="block">
+        <h3>Por que este tema</h3>
+        <div class="mission-grid">
+          <div class="mission-card">
+            <h4>Ler</h4>
+            <p>Reunimos livros e documentos — de obras em domínio público a leituras recomendadas — que ajudam a entender de onde viemos e para onde vamos como república.</p>
+          </div>
+          <div class="mission-card">
+            <h4>Lembrar</h4>
+            <p>Contamos, em texto e em vídeo, a trajetória de quem lutou, escreveu, votou e foi votado para que o Brasil se tornasse mais livre.</p>
+          </div>
+          <div class="mission-card">
+            <h4>Registrar</h4>
+            <p>Toda pesquisa também é feita de nomes e escolhas. Por isso registramos, com transparência, o trabalho de cada integrante da equipe.</p>
+          </div>
+          <div class="mission-card">
+            <h4>Compartilhar</h4>
+            <p>Um blog é, antes de tudo, um convite: que outros estudantes leiam, completem, discordem e continuem esta pesquisa.</p>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </section>
+
+  <!-- ================= BIBLIOTECA ================= -->
+  <section class="panel" id="biblioteca" role="tabpanel" aria-labelledby="tabbtn-biblioteca" hidden>
+    <div class="wrap">
+      <div class="panel-head">
+        <span class="eyebrow">Arquivo Nº 002 — Biblioteca</span>
+        <h2>Uma estante sobre a democracia brasileira</h2>
+        <p class="lede">Alguns destes textos podem ser lidos agora mesmo, aqui embaixo: são obras e documentos tão antigos que hoje pertencem a todos nós, em domínio público. Outros são leituras mais recentes, que recomendamos procurar numa biblioteca ou livraria.</p>
+      </div>
+
+      <section class="block">
+        <h3>Documento fundador</h3>
+        <div class="doc-fundador">
+          <span class="eyebrow">Domínio público — Lei nº 9.610/1998, art. 45</span>
+          <h4>Constituição da República Federativa do Brasil (1988)</h4>
+          <p>Conhecida como a <strong>"Constituição Cidadã"</strong>, é o texto que ainda hoje organiza a democracia brasileira. Foi promulgada em 5 de outubro de 1988, encerrando o processo de redemocratização que sucedeu a ditadura militar (1964-1985). Por ser um documento oficial do Estado brasileiro, seu texto integral é de domínio público — pode ser lido, copiado e compartilhado por qualquer pessoa.</p>
+          <blockquote>"Nós, representantes do povo brasileiro, reunidos em Assembleia Nacional Constituinte para instituir um Estado democrático, destinado a assegurar o exercício dos direitos sociais e individuais, a liberdade, a segurança, o bem-estar, o desenvolvimento, a igualdade e a justiça como valores supremos de uma sociedade fraterna, pluralista e sem preconceitos, fundada na harmonia social e comprometida, na ordem interna e internacional, com a solução pacífica das controvérsias, promulgamos, sob a proteção de Deus, a seguinte Constituição da República Federativa do Brasil."</blockquote>
+          <div class="art"><strong>Art. 1º</strong> A República Federativa do Brasil [...] constitui-se em Estado democrático de direito e tem como fundamentos: a soberania; a cidadania; a dignidade da pessoa humana; os valores sociais do trabalho e da livre iniciativa; o pluralismo político. <strong>Parágrafo único.</strong> Todo o poder emana do povo, que o exerce por meio de representantes eleitos ou diretamente, nos termos desta Constituição.</div>
+          <a class="source-link" href="https://www.planalto.gov.br/ccivil_03/constituicao/constituicao.htm" target="_blank" rel="noopener">→ Ler a Constituição completa no site do Planalto</a>
+        </div>
+      </section>
+
+      <section class="block">
+        <h3>Clássicos em domínio público, prontos para ler</h3>
+        <div class="classics-grid">
+
+          <article class="book-card">
+            <div class="badge-mini" data-stamp data-top="DOMÍNIO" data-bottom="PÚBLICO" data-center="✒" data-color="var(--seal)"></div>
+            <h4>Os Sertões</h4>
+            <span class="book-meta">Euclides da Cunha · 1902 · domínio público desde 1980</span>
+            <p>Enviado como correspondente para cobrir a Guerra de Canudos (1896-1897), o engenheiro e jornalista Euclides da Cunha transformou suas reportagens em um dos livros mais estudados sobre o Brasil. Dividida em três partes — "A Terra", "O Homem" e "A Luta" —, a obra expõe o confronto entre o Estado e o sertão nordestino, questionando quem, afinal, tem direito à cidadania num país tão desigual.</p>
+            <a class="read-link" href="https://www.baixelivros.com.br/literatura-brasileira/os-sertoes" target="_blank" rel="noopener">→ Ler online (domínio público)</a>
+          </article>
+
+          <article class="book-card">
+            <div class="badge-mini" data-stamp data-top="DOMÍNIO" data-bottom="PÚBLICO" data-center="✒" data-color="var(--seal)"></div>
+            <h4>Cartas Chilenas</h4>
+            <span class="book-meta">Atribuídas a Tomás Antônio Gonzaga · c. 1788 · domínio público</span>
+            <p>Sob o pseudônimo de Critilo, um poeta árcade denunciou em treze cartas satíricas os abusos do governador de Minas Gerais — disfarçado, para escapar da censura, de governador do "Chile". Escritas às vésperas da Inconfidência Mineira, são um dos primeiros grandes retratos literários da corrupção e do abuso de poder no Brasil colonial.</p>
+            <a class="read-link" href="https://www.baixelivros.com.br/literatura-brasileira/cartas-chilenas" target="_blank" rel="noopener">→ Ler online (domínio público)</a>
+          </article>
+
+        </div>
+      </section>
+
+      <section class="block">
+        <h3>Leituras recomendadas sobre a democracia brasileira</h3>
+        <p style="margin-top:-0.6rem; color:var(--ink-2); font-size:0.95rem;">Estas obras ainda estão protegidas por direitos autorais — por isso não podem ser reproduzidas aqui. Vale a pena procurá-las numa biblioteca, sebo ou livraria.</p>
+        <div class="recommend-list">
+          <div class="recommend-item">
+            <span class="rec-mark">I</span>
+            <div>
+              <h4>Cidadania no Brasil: o Longo Caminho</h4>
+              <span class="author">José Murilo de Carvalho</span>
+              <p>Um clássico da historiografia brasileira sobre como — e o quanto — os direitos civis, políticos e sociais avançaram (ou não) no país desde a Independência.</p>
+            </div>
+          </div>
+          <div class="recommend-item">
+            <span class="rec-mark">II</span>
+            <div>
+              <h4>Como as Democracias Morrem</h4>
+              <span class="author">Steven Levitsky e Daniel Ziblatt</span>
+              <p>Os cientistas políticos americanos comparam casos ao redor do mundo para entender como democracias deixam de morrer por golpes repentinos e passam a corroer por dentro, aos poucos.</p>
+            </div>
+          </div>
+          <div class="recommend-item">
+            <span class="rec-mark">III</span>
+            <div>
+              <h4>Dinheiro, Eleições e Poder</h4>
+              <span class="author">Bruno Carazza</span>
+              <p>Um raio-x de como o financiamento de campanhas molda o Congresso Nacional brasileiro e as leis que ele aprova — ou deixa de aprovar.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </section>
+
+  <!-- ================= PERSONALIDADES ================= -->
+  <section class="panel" id="personalidades" role="tabpanel" aria-labelledby="tabbtn-personalidades" hidden>
+    <div class="wrap">
+      <div class="panel-head">
+        <span class="eyebrow">Arquivo Nº 003 — Personalidades</span>
+        <h2>Cinco vidas na construção da democracia brasileira</h2>
+        <p class="lede">De um quilombo do século XVII à Constituinte de 1988: histórias de quem ampliou, defendeu ou reconquistou a liberdade política no Brasil.</p>
+      </div>
+
+      <p class="note-box">Nota da equipe: os retratos abaixo são selos ilustrativos com as iniciais de cada personalidade. Ao publicar o site, troquem por fotos ou retratos reais — verificando sempre os direitos de uso da imagem (o Wikimedia Commons é uma boa fonte de imagens históricas em domínio público).</p>
+
+      <!-- Zumbi -->
+      <article class="figure-card">
+        <div class="figure-photo">
+          <div class="figure-portrait">
+            <span class="figure-initials">ZP</span>
+            <div class="mini-stamp" data-stamp data-top="REGISTRO" data-bottom="HISTÓRICO" data-center="★" data-color="var(--stamp)"></div>
+          </div>
+          <span class="figure-years">c. 1655 — 1695</span>
+        </div>
+        <div class="figure-text">
+          <h3>Zumbi dos Palmares</h3>
+          <span class="figure-role">Líder da resistência do Quilombo dos Palmares</span>
+          <p>Nascido por volta de 1655 dentro do Quilombo dos Palmares, na Serra da Barriga (atual Alagoas), Zumbi era neto da princesa Aqualtune e sobrinho de Ganga Zumba, um dos líderes do quilombo. Tornou-se o principal comandante militar da resistência, recusando qualquer acordo que garantisse liberdade apenas a quem tivesse nascido livre, mantendo escravizados os demais. Assumiu a liderança de Palmares por volta de 1680 e resistiu a sucessivas expedições coloniais até a destruição do quilombo, em 1694. Capturado e morto em 20 de novembro de 1695, tornou-se o maior símbolo brasileiro da luta por liberdade e autodeterminação — valores que, séculos depois, sustentam a própria ideia de cidadania democrática.</p>
+          <div class="figure-video">
+            <span class="video-label">Vídeo sobre Zumbi dos Palmares</span>
+            <div class="video-frame">
+              <iframe src="https://www.youtube.com/embed/xOPXXxmFHqw" title="Zumbi dos Palmares" loading="lazy" allowfullscreen></iframe>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Rui Barbosa -->
+      <article class="figure-card">
+        <div class="figure-photo">
+          <div class="figure-portrait">
+            <span class="figure-initials">RB</span>
+            <div class="mini-stamp" data-stamp data-top="REGISTRO" data-bottom="HISTÓRICO" data-center="★" data-color="var(--stamp)"></div>
+          </div>
+          <span class="figure-years">1849 — 1923</span>
+        </div>
+        <div class="figure-text">
+          <h3>Rui Barbosa</h3>
+          <span class="figure-role">Jurista, redator da Constituição de 1891</span>
+          <p>Nascido em Salvador em 1849, Rui Barbosa formou-se em Direito e tornou-se um dos maiores juristas e oradores da história brasileira. Foi um dos principais redatores da primeira Constituição republicana, em 1891, na qual introduziu o habeas corpus como garantia constitucional. Discordando do autoritarismo do governo de Floriano Peixoto, viveu exilado entre 1893 e 1895, sem deixar de escrever em defesa das liberdades civis. Em 1907, na Conferência de Paz de Haia, ganhou o apelido de "Águia de Haia" ao defender a igualdade jurídica entre nações grandes e pequenas. Fundador da Academia Brasileira de Letras, permanece como símbolo da defesa do Estado de Direito no Brasil.</p>
+          <div class="figure-video">
+            <span class="video-label">Vídeo sobre Rui Barbosa</span>
+            <div class="video-frame">
+              <iframe src="https://www.youtube.com/embed/sqUe76rn1OU" title="Rui Barbosa" loading="lazy" allowfullscreen></iframe>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Bertha Lutz -->
+      <article class="figure-card">
+        <div class="figure-photo">
+          <div class="figure-portrait">
+            <span class="figure-initials">BL</span>
+            <div class="mini-stamp" data-stamp data-top="REGISTRO" data-bottom="HISTÓRICO" data-center="★" data-color="var(--stamp)"></div>
+          </div>
+          <span class="figure-years">1894 — 1976</span>
+        </div>
+        <div class="figure-text">
+          <h3>Bertha Lutz</h3>
+          <span class="figure-role">Liderança do movimento pelo voto feminino</span>
+          <p>Bióloga formada na Sorbonne, Bertha Lutz voltou ao Brasil em 1918 já influenciada pelo movimento sufragista europeu. Em 1922, fundou a Federação Brasileira pelo Progresso Feminino e passou a liderar, em todo o país, a campanha pelo direito de voto das mulheres. A conquista veio em 1932, com o Código Eleitoral, incorporada à Constituição de 1934. Eleita deputada federal em 1936, defendeu leis de proteção ao trabalho de mulheres e menores. Em 1945, representou o Brasil na conferência que fundou a ONU, onde lutou pela inclusão da igualdade de gênero na Carta das Nações Unidas — expandindo, na prática, quem tinha o direito de participar da democracia brasileira.</p>
+          <div class="figure-video">
+            <span class="video-label">Vídeo sobre Bertha Lutz</span>
+            <div class="video-frame">
+              <iframe src="https://www.youtube.com/embed/UYLcCT5h9-Q" title="Bertha Lutz" loading="lazy" allowfullscreen></iframe>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Tancredo Neves -->
+      <article class="figure-card">
+        <div class="figure-photo">
+          <div class="figure-portrait">
+            <span class="figure-initials">TN</span>
+            <div class="mini-stamp" data-stamp data-top="REGISTRO" data-bottom="HISTÓRICO" data-center="★" data-color="var(--stamp)"></div>
+          </div>
+          <span class="figure-years">1910 — 1985</span>
+        </div>
+        <div class="figure-text">
+          <h3>Tancredo Neves</h3>
+          <span class="figure-role">Primeiro presidente civil eleito após a ditadura</span>
+          <p>Advogado mineiro nascido em 1910, Tancredo Neves construiu uma longa carreira política: foi deputado federal por vários mandatos, ministro da Justiça no governo Vargas, primeiro-ministro durante o breve período parlamentarista de 1961-1962 e governador de Minas Gerais. Ao longo da ditadura militar (1964-1985), posicionou-se pela redemocratização do país. Em 15 de janeiro de 1985, foi eleito presidente da República pelo Colégio Eleitoral — ainda uma eleição indireta, mas que encerrava 21 anos de regime militar. Não chegou a tomar posse: internado às vésperas da cerimônia, morreu em 21 de abril de 1985. Tornou-se, mesmo sem governar, símbolo da travessia entre a ditadura e a democracia.</p>
+          <div class="figure-video">
+            <span class="video-label">Vídeo sobre Tancredo Neves</span>
+            <div class="video-frame">
+              <iframe src="https://www.youtube.com/embed/QLKQ4mC-Uyc" title="Tancredo Neves" loading="lazy" allowfullscreen></iframe>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Ulysses Guimarães -->
+      <article class="figure-card">
+        <div class="figure-photo">
+          <div class="figure-portrait">
+            <span class="figure-initials">UG</span>
+            <div class="mini-stamp" data-stamp data-top="REGISTRO" data-bottom="HISTÓRICO" data-center="★" data-color="var(--stamp)"></div>
+          </div>
+          <span class="figure-years">1916 — 1992</span>
+        </div>
+        <div class="figure-text">
+          <h3>Ulysses Guimarães</h3>
+          <span class="figure-role">"Senhor Diretas", presidente da Constituinte de 1988</span>
+          <p>Advogado paulista nascido em 1916, Ulysses Guimarães presidiu o MDB — o partido de oposição durante a ditadura militar — e depois fundou e liderou o PMDB. Foi um dos rostos mais conhecidos da campanha Diretas Já (1983-1984), o que lhe valeu o apelido de "Senhor Diretas". Como presidente da Câmara dos Deputados, assumiu também a presidência da Assembleia Nacional Constituinte de 1987-1988, conduzindo os trabalhos que resultaram na Constituição promulgada em 5 de outubro de 1988 — batizada por ele mesmo de "Constituição Cidadã". Morreu em outubro de 1992, em um acidente de helicóptero no litoral de Angra dos Reis. Seu nome segue associado à reconstrução democrática do Brasil.</p>
+          <div class="figure-video">
+            <span class="video-label">Vídeo sobre Ulysses Guimarães</span>
+            <div class="video-frame">
+              <iframe src="https://www.youtube.com/embed/X4SvPryt3Ys" title="Ulysses Guimarães" loading="lazy" allowfullscreen></iframe>
+            </div>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ================= EQUIPE ================= -->
+  <section class="panel" id="equipe" role="tabpanel" aria-labelledby="tabbtn-equipe" hidden>
+    <div class="wrap">
+      <div class="panel-head">
+        <span class="eyebrow">Arquivo Nº 004 — Equipe</span>
+        <h2>Quem fez esta pesquisa</h2>
+        <p class="lede">Toda pesquisa é também um trabalho de equipe. Estes são os papéis sugeridos de cada integrante — editem para refletir exatamente o que cada um fez.</p>
+      </div>
+
+      <div class="team-grid">
+        <div class="team-card">
+          <div class="team-avatar">M</div>
+          <h4>Matheus</h4>
+          <span class="team-role">Pesquisa histórica</span>
+          <p>Levantamento e curadoria do conteúdo histórico sobre as personalidades da democracia brasileira.</p>
+        </div>
+        <div class="team-card">
+          <div class="team-avatar">L</div>
+          <h4>Laysa</h4>
+          <span class="team-role">Redação e revisão</span>
+          <p>Redação e revisão dos textos do site, garantindo clareza e correção das informações.</p>
+        </div>
+        <div class="team-card">
+          <div class="team-avatar">S</div>
+          <h4>Sophia</h4>
+          <span class="team-role">Design e desenvolvimento</span>
+          <p>Design visual e desenvolvimento do site, incluindo a identidade das quatro abas.</p>
+        </div>
+        <div class="team-card">
+          <div class="team-avatar">L</div>
+          <h4>Louise</h4>
+          <span class="team-role">Curadoria da biblioteca</span>
+          <p>Seleção dos livros e documentos apresentados na aba Biblioteca.</p>
+        </div>
+        <div class="team-card">
+          <div class="team-avatar">G</div>
+          <h4>Guilherme</h4>
+          <span class="team-role">Curadoria audiovisual</span>
+          <p>Seleção e curadoria dos vídeos que acompanham cada personalidade.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Vlog Literário sobre a Democracia — Projeto para o Ceará Científico</span>
+    <span>Fontes: Planalto.gov.br · Câmara dos Deputados · Baixe Livros (domínio público) · YouTube</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  // ---------- Geração dos selos (carimbos) ----------
+  let stampCounter = 0;
+  function buildStamp(el){
+    stampCounter++;
+    const id = 'stamp' + stampCounter;
+    const top = el.getAttribute('data-top') || '';
+    const bottom = el.getAttribute('data-bottom') || '';
+    const center = el.getAttribute('data-center') || '';
+    const color = el.getAttribute('data-color') || 'var(--stamp)';
+    el.classList.add('stamp-svg-holder');
+    el.style.color = color;
+    el.innerHTML = `
+    <svg viewBox="0 0 200 200" class="stamp-svg" role="img" aria-label="${top} ${bottom}">
+      <defs>
+        <filter id="rough-${id}" x="-20%" y="-20%" width="140%" height="140%">
+          <feTurbulence type="fractalNoise" baseFrequency="0.03" numOctaves="2" seed="${stampCounter}" result="noise"/>
+          <feDisplacementMap in="SourceGraphic" in2="noise" scale="5"/>
+        </filter>
+        <path id="circTop-${id}" d="M 20,105 A 80,80 0 1,1 180,105" fill="none"/>
+        <path id="circBot-${id}" d="M 32,140 A 80,80 0 0,0 168,140" fill="none"/>
+      </defs>
+      <g filter="url(#rough-${id})">
+        <circle cx="100" cy="100" r="90" fill="none" stroke="currentColor" stroke-width="3"/>
+        <circle cx="100" cy="100" r="76" fill="none" stroke="currentColor" stroke-width="1.2"/>
+        <text font-family="'Special Elite', monospace" font-size="12.5" letter-spacing="2" fill="currentColor">
+          <textPath href="#circTop-${id}" startOffset="50%" text-anchor="middle">${top}</textPath>
+        </text>
+        <text font-family="'Special Elite', monospace" font-size="11" letter-spacing="1.5" fill="currentColor">
+          <textPath href="#circBot-${id}" startOffset="50%" text-anchor="middle">${bottom}</textPath>
+        </text>
+        <text x="100" y="112" font-family="'Fraunces', serif" font-weight="700" font-size="26" fill="currentColor" text-anchor="middle">${center}</text>
+      </g>
+    </svg>`;
+  }
+  document.querySelectorAll('[data-stamp]').forEach(buildStamp);
+
+  // ---------- Navegação por abas ----------
+  const tabs = Array.from(document.querySelectorAll('.tab'));
+  const panels = Array.from(document.querySelectorAll('.panel'));
+
+  function activate(tabName, moveFocus){
+    tabs.forEach(t=>{
+      const on = t.dataset.tab === tabName;
+      t.setAttribute('aria-selected', on ? 'true' : 'false');
+      t.tabIndex = on ? 0 : -1;
+      if(on && moveFocus) t.focus();
+    });
+    panels.forEach(p=>{
+      p.hidden = p.id !== tabName;
+    });
+    history.replaceState(null, '', '#' + tabName);
+  }
+
+  tabs.forEach((tab, i)=>{
+    tab.addEventListener('click', ()=> activate(tab.dataset.tab, false));
+    tab.addEventListener('keydown', (e)=>{
+      let idx = i;
+      if(e.key === 'ArrowRight') idx = (i+1) % tabs.length;
+      else if(e.key === 'ArrowLeft') idx = (i-1+tabs.length) % tabs.length;
+      else return;
+      e.preventDefault();
+      activate(tabs[idx].dataset.tab, true);
+    });
+  });
+
+  const initial = (location.hash || '').replace('#','');
+  const valid = ['inicio','biblioteca','personalidades','equipe'];
+  activate(valid.includes(initial) ? initial : 'inicio', false);
+})();
+</script>
+
+</body>
+</html>

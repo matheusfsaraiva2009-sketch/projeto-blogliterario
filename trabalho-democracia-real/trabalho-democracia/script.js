@@ -1,3 +1,5 @@
+import { saveFeedback, saveReview, loadReviewsForBook, removeReview } from './firebase-config.js';
+
 (function () {
   // ---------- Geração dos selos (carimbos) ----------
   let stampCounter = 0;
@@ -954,7 +956,7 @@
   /* Estado do painel de login: 'login' | 'register' */
   let authPanel = 'login';
 
-  function openReviewsModal(book) {
+  async function openReviewsModal(book) {
     reviewsModalCurrentBook = book;
     selectedStars = 0;
     authPanel = 'login';
@@ -966,15 +968,22 @@
       modal.className = 'reviews-modal-overlay';
       modal.setAttribute('role', 'dialog');
       modal.setAttribute('aria-modal', 'true');
-      modal.setAttribute('aria-label', 'Avaliações do livro');
+      modal.setAttribute('aria-label', 'Avaliacoes do livro');
       document.body.appendChild(modal);
       modal.addEventListener('click', (e) => { if (e.target === modal) closeReviewsModal(); });
     }
 
-    renderReviewsModal(modal, book);
+    // Mostra loading enquanto carrega do Firebase
+    modal.innerHTML = `<div class="reviews-modal-box" style="display:flex;align-items:center;justify-content:center;min-height:200px;"><p style="opacity:.6;font-family:'Inter',sans-serif">Carregando avaliações...</p></div>`;
     modal.hidden = false;
     document.body.style.overflow = 'hidden';
     requestAnimationFrame(() => modal.classList.add('is-open'));
+
+    // Carrega do Firebase (ou cai para localStorage como fallback)
+    const fbReviews = await loadReviewsForBook(book.id);
+    const reviews = fbReviews !== null ? fbReviews : getBookReviews(book.id);
+
+    renderReviewsModal(modal, book, reviews);
   }
 
   function closeReviewsModal() {
@@ -1007,9 +1016,9 @@
 
   function refreshBookStrip(bookId) { refreshItemStrip(bookId); }
 
-  function renderReviewsModal(modal, book) {
+  function renderReviewsModal(modal, book, reviews) {
     const session = getSession();
-    const reviews = getBookReviews(book.id);
+    if (!reviews) reviews = getBookReviews(book.id); // fallback localStorage
     const avg = avgStars(reviews);
 
     /* ---------- Histórico ---------- */
@@ -1174,7 +1183,7 @@
     /* ---- Submit review ---- */
     const submitBtn = document.getElementById('rm-submit');
     if (submitBtn) {
-      submitBtn.addEventListener('click', () => {
+      submitBtn.addEventListener('click', async () => {
         if (!selectedStars) {
           if (starsLabel) { starsLabel.style.color = '#c0392b'; starsLabel.textContent = '⚠️ Selecione pelo menos uma estrela'; }
           return;
@@ -1183,26 +1192,54 @@
         if (!cur) return;
         const text = textarea ? textarea.value.trim() : '';
         const now = new Date();
-        upsertReview(book.id, cur.email, {
+        const reviewData = {
           name: cur.name, email: cur.email, stars: selectedStars, text,
           date: now.toLocaleDateString('pt-BR', { day: '2-digit', month: 'short', year: 'numeric' }),
           ts: now.toISOString()
-        });
+        };
+
+        submitBtn.textContent = 'Salvando...';
+        submitBtn.disabled = true;
+
+        // Salva no Firebase
+        const fbResult = await saveReview(book.id, cur.email, reviewData);
+        if (fbResult.ok) {
+          console.log('[Firebase] Review salva!');
+        } else {
+          // Fallback: salva só no localStorage
+          upsertReview(book.id, cur.email, reviewData);
+          console.warn('[Firebase] Usando localStorage como fallback:', fbResult.error);
+        }
+
         selectedStars = 0;
+
+        // Recarrega reviews do Firebase para mostrar atualizado
+        const fbReviews = await loadReviewsForBook(book.id);
+        const updatedReviews = fbReviews !== null ? fbReviews : getBookReviews(book.id);
         refreshBookStrip(book.id);
-        renderReviewsModal(modal, book);
+        renderReviewsModal(modal, book, updatedReviews);
       });
     }
 
     /* ---- Delete review (só o próprio) ---- */
     document.querySelectorAll('.btn-delete-review').forEach(btn => {
-      btn.addEventListener('click', () => {
+      btn.addEventListener('click', async () => {
         const cur = getSession();
         if (!cur || cur.email !== btn.dataset.email) return;
         if (!confirm('Tem certeza que deseja excluir sua avaliação?')) return;
-        deleteReview(book.id, cur.email);
+
+        // Remove do Firebase
+        const fbResult = await removeReview(book.id, cur.email);
+        if (!fbResult.ok) {
+          // Fallback: remove do localStorage
+          deleteReview(book.id, cur.email);
+        }
+
+        // Recarrega e re-renderiza
+        const fbReviews = await loadReviewsForBook(book.id);
+        const updatedReviews = fbReviews !== null ? fbReviews : getBookReviews(book.id);
         refreshBookStrip(book.id);
-        renderReviewsModal(modal, book);
+        renderReviewsModal(modal, book, updatedReviews);
       });
     });
   }
@@ -2364,6 +2401,18 @@
                 message: `${message}\n\n(Enviado por: ${session.name} <${session.email}>)`,
                 to_email: 'vlogliterarioFPT@gmail.com',
               });
+            }
+
+            // Salva no Firebase Firestore (banco de dados)
+            const fbResult = await saveFeedback({
+              name:    session.name,
+              email:   session.email,
+              message: message
+            });
+            if (fbResult.ok) {
+              console.log('[Firebase] Feedback salvo! ID:', fbResult.id);
+            } else {
+              console.warn('[Firebase] Nao foi possivel salvar no banco:', fbResult.error);
             }
 
             if (form) form.style.display = 'none';
